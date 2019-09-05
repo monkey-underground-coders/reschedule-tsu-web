@@ -1,9 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import { render } from "react-dom";
+import AppWrapper from "#/components/AppWrapper";
+import Application from "#/components/Application";
+import "#/styles/index.scss";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// import * as serviceWorker from "./serviceWorker";
 
+const rootElement = document.getElementById("root");
+const DOMElement = (
+  <AppWrapper>
+    <Application></Application>
+  </AppWrapper>
+);
+
+render(DOMElement, rootElement);
 // serviceWorker.unregister();
