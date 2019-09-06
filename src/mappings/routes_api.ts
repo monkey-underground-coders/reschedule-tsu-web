@@ -1,7 +1,10 @@
-export const hostname = "https://rts.a6raywa1cher.com/reschedule-tsu-spring"
+import { Faculty } from "#/engine/types";
 
-const getAbsoluteUrl = (route: string) => `${hostname}/${route}`
+export const hostname = "https://rts.a6raywa1cher.com/reschedule-tsu-spring";
+
+const getAbsoluteUrl = (route: string) => `${hostname}/${route}`;
 
 export default {
-  faculties: getAbsoluteUrl('faculties')
-}
+  faculties: getAbsoluteUrl("faculties"),
+  facultyGroups: (faculty: Faculty) => getAbsoluteUrl(`${faculty}/groups`),
+};

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { StoreState, Faculty } from "#/engine/types";
 import { fetchFaculties } from "#/engine/actions/schedule";
+import { routes, AppRoute } from "#/mappings/routes_app";
+import { Route, Switch } from "react-router";
 
 interface ApplicationProps {
-  faculties: Faculty[];
-  fetchFaculties: any;
+  fetchFaculties: () => Promise<void>;
 }
 
 const Application = (props: ApplicationProps) => {
@@ -13,27 +13,16 @@ const Application = (props: ApplicationProps) => {
     props.fetchFaculties();
   }, []);
 
-  const renderedFaculties = props.faculties.map((faculty: Faculty, index: number) => {
-    return <div key={index}>{faculty}</div>;
-  });
+  const appRoutes = routes.map((route: AppRoute) => <Route {...route} />);
 
-  return (
-    <div>
-      <h1>Reschedule</h1>
-      <div className="faculties-list">{renderedFaculties}</div>
-    </div>
-  );
+  return <Switch>{appRoutes}</Switch>;
 };
-
-const mapStateToProps = (state: StoreState) => ({
-  faculties: state.schedule.faculties,
-});
 
 const mapDispatchToProps = {
   fetchFaculties,
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Application);

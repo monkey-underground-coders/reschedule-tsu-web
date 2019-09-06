@@ -23,7 +23,7 @@ const createStatefulAction = (action: string) => [
 const SCHEDULE_ACTION_TYPES = createActionTypeGroup(
   [
     ...createStatefulAction("FETCH_FACULTIES"),
-    ...createStatefulAction("FETCH_GROUPS_LIST"),
+    ...createStatefulAction("FETCH_GROUPS"),
     ...createStatefulAction("FETCH_SCHEDULE"),
   ],
   "schedule",
