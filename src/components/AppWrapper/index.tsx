@@ -1,4 +1,5 @@
 import React from "react";
+import { ConnectedRouter } from "connected-react-router";
 import { Provider } from "react-redux";
 import store from "#/engine/store";
 import history from "#/engine/history";
@@ -9,7 +10,9 @@ export interface AppWrapperProps {
 
 const AppWrapper = ({ children }: AppWrapperProps) => (
   <Provider store={store}>
-    <React.Fragment>{children}</React.Fragment>
+    <ConnectedRouter history={history}>
+      <React.Fragment>{children}</React.Fragment>
+    </ConnectedRouter>
   </Provider>
 );
 
