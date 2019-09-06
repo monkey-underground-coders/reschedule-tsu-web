@@ -1,9 +1,9 @@
 import { applyMiddleware, compose, createStore } from "redux";
-import { rootReducer } from "#/engine/reducers";
+import rootReducer from "#/engine/reducers";
 import thunkMiddleware from "redux-thunk";
 import { StoreState } from "./types";
 
-const initialState: StoreState = {};
+const initialState: StoreState = {} as any;
 
 declare global {
   interface Window {
@@ -11,10 +11,10 @@ declare global {
   }
 }
 
-const store = () => {
+const store = (() => {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const enhancer = composeEnhancers(applyMiddleware(thunkMiddleware));
-  return createStore(rootReducer, initialState, enhancer);
-};
+  return createStore(rootReducer as any, initialState as any, enhancer);
+})();
 
 export default store;
