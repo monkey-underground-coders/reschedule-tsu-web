@@ -1,13 +1,34 @@
-const createEnum = <T extends { [index: string]: U }, U extends string>(x: T) => x;
+type ActionType = string;
 
 const prefixes = {
   schedule: "%%SCHEDULE",
   session: "%%SESSION",
 };
 
-const createScheduleAction = (action: string) => `${prefixes.schedule}/${action}`;
-const createSessionAction = (action: string) => `${prefixes.session}/${action}`;
+const createActionTypeGroup = (actions: string[], prefix: keyof typeof prefixes) =>
+  actions.reduce(
+    (acc: Record<ActionType, string>, action: ActionType) => ({
+      ...acc,
+      [action]: `${prefixes[prefix]}/${action}`,
+    }),
+    {},
+  );
 
-export default createEnum({
-  FETCH_SCHEDULE: createScheduleAction("FETCH"),
-});
+const createStatefulAction = (action: string) => [
+  `${action}_START`,
+  `${action}_SUCCEED`,
+  `${action}_FAIL`,
+];
+
+const SCHEDULE_ACTION_TYPES = createActionTypeGroup(
+  [
+    ...createStatefulAction("FETCH_FACULTIES"),
+    ...createStatefulAction("FETCH_GROUPS_LIST"),
+    ...createStatefulAction("FETCH_SCHEDULE"),
+  ],
+  "schedule",
+);
+
+export default {
+  SCHEDULE_ACTION_TYPES,
+};
