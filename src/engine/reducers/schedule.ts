@@ -6,7 +6,7 @@ const initialState: ScheduleInitialState = {};
 
 export default createReducer(
   {
-    [ActionTypes.FETCH_SCHEDULE]: (state, action) => {
+    [ActionTypes.SCHEDULE_ACTION_TYPES.FETCH_SCHEDULE_START]: (state, action) => {
       return state;
     },
   },
