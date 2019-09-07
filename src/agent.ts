@@ -1,5 +1,6 @@
 import store from "#/engine/store";
 import { StoreState } from "#/engine/types";
+import _ from "lodash";
 
 export const constructGenericRequestHeaders = () => ({
   "Content-Type": "application/json",
@@ -16,9 +17,25 @@ export const constructRequestHeaders = (params = {}) => {
   };
 };
 
-const initialResponseHandler = (response: any) => {
+const badRequestHandler = (response: Response) => {};
+const badGatewayHandler = (response: Response) => {};
+const serviceUnavailableHandler = (response: Response) => {};
+
+const responseErrorHandlers = (response: Response) => ({
+  400: (response: Response) => badRequestHandler(response),
+  502: (response: Response) => badGatewayHandler(response),
+  503: (response: Response) => serviceUnavailableHandler(response),
+});
+
+const getErrorHandler = (response: Response): (() => void) => {
+  return _.get(responseErrorHandlers, response.status, () => {
+    console.error(`An error occured while sending a request with status ${response.status}`);
+  });
+};
+
+const initialResponseHandler = (response: Response) => {
   if (!response.ok) {
-    throw new Error(`An error occured while sending a request with status ${response.status}`);
+    getErrorHandler(response);
   }
   return response.json();
 };
