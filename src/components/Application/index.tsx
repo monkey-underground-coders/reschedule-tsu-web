@@ -6,7 +6,7 @@ import { Route, Switch } from "react-router";
 import Sidebar from "../Sidebar";
 
 const renderedRoutes = (() => {
-  const appRoutes = routes.map((route: AppRoute) => <Route {...route} />);
+  const appRoutes = routes.map((route: AppRoute) => <Route {...route} key={route.path} />);
   return <Switch>{appRoutes}</Switch>;
 })();
 
