@@ -4,6 +4,7 @@ import { fetchFaculties } from "#/engine/actions/schedule";
 import { routes, AppRoute } from "#/mappings/routes_app";
 import { Route, Switch } from "react-router";
 import Sidebar from "../Sidebar";
+import Navbar from "../Navbar";
 
 const renderedRoutes = (() => {
   const appRoutes = routes.map((route: AppRoute) => <Route {...route} key={route.path} />);
@@ -21,9 +22,14 @@ const Application = (props: ApplicationProps) => {
     props.fetchFaculties();
   }, []);
 
+  const toggleSidebar = () => {
+    setSidebarActive(!sidebarActive);
+  };
+
   return (
-    <div className="wrapper skin-white">
+    <div className="wrapper skin-white skin-blue">
       <Sidebar active={sidebarActive} />
+      <Navbar isSidebarActive={sidebarActive} toggleSidebar={toggleSidebar} />
 
       <div className="schedule">{renderedRoutes}</div>
     </div>

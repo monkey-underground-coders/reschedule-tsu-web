@@ -5,7 +5,7 @@ const prefixes = {
   session: "%%SESSION",
 };
 
-const createActionTypeGroup = (actions: string[], prefix: keyof typeof prefixes) =>
+export const createActionTypeGroup = (actions: string[], prefix: keyof typeof prefixes) =>
   actions.reduce(
     (acc: Record<ActionType, string>, action: ActionType) => ({
       ...acc,
@@ -14,7 +14,7 @@ const createActionTypeGroup = (actions: string[], prefix: keyof typeof prefixes)
     {},
   );
 
-const createStatefulAction = (action: string) => [
+export const createStatefulAction = (action: string) => [
   `${action}_START`,
   `${action}_SUCCEED`,
   `${action}_FAIL`,

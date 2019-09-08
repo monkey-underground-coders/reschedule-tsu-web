@@ -1,0 +1,330 @@
+@import "#/styles/mixins.scss";
+
+$navbar-button-color: #1b3e80;
+
+.main-header {
+  position: relative;
+  max-height: 120px;
+  z-index: 1030;
+
+  .navbar {
+    -webkit-transition: margin-left 0.3s ease-in-out;
+    -o-transition: margin-left 0.3s ease-in-out;
+    transition: margin-left 0.3s ease-in-out;
+    margin-bottom: 0;
+    border: none;
+    min-height: 75px;
+    border-radius: 0;
+
+    &.sidebar-active {
+      margin-left: 260px;
+
+      @media screen and (max-width: 992px) {
+        margin-left: 0;
+      }
+    }
+  }
+  .sidebar-toggle {
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: transparent;
+    background-image: none;
+    font-family: fontAwesome;
+    transition: 0.3s;
+    font-size: 1.25rem;
+
+    &:hover {
+      background: $navbar-button-color;
+    }
+  }
+  .navbar-custom-menu {
+    float: right;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navbar-nav {
+    float: left;
+    margin: 0;
+  }
+}
+
+.skin-blue .main-header .navbar {
+  background-color: #1376ab;
+
+  &.sidebar-active {
+    @media screen and (max-width: 992px) {
+      background-color: transparent;
+    }
+  }
+
+  .sidebar-toggle {
+    color: #fff;
+  }
+}
+
+.skin-blue .main-header .navbar .nav > li > a {
+  color: #ffffff;
+}
+
+.navbar-custom-menu {
+  display: flex;
+  align-items: stretch;
+  padding: 0;
+  padding-right: 0px;
+  padding-right: 15px;
+
+  .dropdown {
+    .dropdown-menu {
+      transition: transform 0.2s;
+      transform-origin: right 0;
+      transform: scale(0) translate3d(0px, 38px, 0px) !important;
+      display: block;
+      overflow: hidden;
+      max-height: 250px;
+    }
+    &.show > .dropdown-menu {
+      transform: scale(1) translate3d(0px, 38px, 0px) !important;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    padding-right: 0;
+  }
+
+  .dropdown-show > .dropdown-menu {
+    transform-origin: right 0;
+  }
+
+  .dropdown-menu.scale-up {
+    box-shadow: 0px 0px 50px 0px #523f6926;
+    border-color: rgba(120, 130, 140, 0.13);
+    display: inline-block;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    transform-origin: right 0;
+    max-height: unset !important;
+  }
+
+  .show > .dropdown-menu.scale-up {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    // transform-origin: left 0;
+    // -webkit-transform-origin: left 0;
+  }
+
+  .dropdown-menu {
+    border-radius: 10px;
+    padding: 10px;
+    border-top-width: 0;
+    width: auto;
+  }
+
+  .user-body {
+    padding: 0px;
+    border-top: 1px solid #ddd;
+
+    i {
+      font-size: 1rem;
+    }
+
+    a {
+      padding: 9px 10px;
+      display: block;
+      color: #67757c;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .divider {
+      height: 1px;
+      margin: 9px 0;
+      overflow: hidden;
+      background-color: rgba(120, 130, 140, 0.13);
+    }
+  }
+
+  li.user-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 10px;
+    background-color: #fff;
+
+    img {
+      z-index: 5;
+      height: 90px;
+      border: 3px solid transparent;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    p {
+      z-index: 5;
+      color: #67757c;
+      font-size: 14px;
+      text-align: left;
+      min-width: 150px;
+      padding-left: 15px;
+      margin-bottom: 0;
+      padding-top: 10px;
+
+      small {
+        display: block;
+        font-size: 12px;
+      }
+      small.mb-5 {
+        margin-bottom: 5px !important;
+      }
+    }
+  }
+
+  .user-menu .user-image {
+    max-height: 38px;
+    margin-top: 0px;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    right: 50px;
+    left: auto;
+    top: 30px;
+  }
+}
+
+.btn-user-card {
+  background: transparent;
+  border: none;
+  color: #67757c;
+  padding: 9px 10px;
+  display: block;
+  color: #67757c;
+  font-size: 14px;
+}
+
+.navbar-custom-menu .header-navbar-item {
+  display: flex;
+  align-items: stretch;
+  margin: 0 0.1rem;
+
+  .header-navbar-wrapper {
+    cursor: pointer;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .header-navbar-icon {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+
+    i {
+      font-size: 1.5rem;
+      transition: all 0.3s;
+      color: #fff;
+    }
+
+    &:hover {
+      transition: all 0.3s;
+      background-color: $navbar-button-color;
+    }
+  }
+
+  .navbar-custom-menu-user {
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    height: 50px;
+    border-radius: 50px;
+    cursor: pointer;
+
+    @media screen and (max-width: 992px) {
+      padding: 0;
+    }
+  }
+
+  .navbar-custom-menu-welcome {
+    display: flex;
+    align-self: center;
+    padding: 0 0.55rem 0 0;
+    font-weight: 500;
+    font-size: 0.9rem;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    color: #fff;
+  }
+
+  .navbar-custom-menu-username {
+    transition: 0.3s;
+    display: flex;
+    align-self: center;
+    padding: 0 0.55rem 0 0;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #fff;
+  }
+
+  .navbar-custom-menu-user img {
+    align-self: center;
+    max-height: 38px;
+    border-radius: 50%;
+  }
+
+  &:hover.header-navbar-item--user .navbar-custom-menu-user,
+  &.show.header-navbar-item--user .navbar-custom-menu-user {
+    transition: all 0.3s;
+    background-color: $navbar-button-color;
+  }
+  .navbar-custom-menu-user {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    color: #959cb6;
+  }
+}
+
+.k-badge {
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+
+  &.k-badge--lg {
+    height: 30px;
+    width: 30px;
+    font-size: 1.25rem;
+  }
+  &.k-badge--brand {
+    color: #fff;
+    background: #0d3fa9;
+  }
+  &.k-badge--username {
+    height: 38px;
+    width: 38px;
+  }
+}
+
+.navbar-custom-menu .header-navbar-item .navbar-custom-menu-wrapper {
+  cursor: pointer;
+  display: flex;
+  align-items: stretch;
+}
